@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Server ready</h1>
+
+    <form action="/save" method="POST" enctype="multipart/form-data">
+        <label>STT: <input type="text" name="id" id="id"></label><br>
+        <label>Ten mon hoc: <input type="text" name="name" id="name"></label><br>
+        <label>Loai mon hoc: <input type="text" name="course_type" id="course_type"></label><br>
+        <label>Hoc ky: <input type="text" name="semester" id="semester"></label><br>
+        <label>Khoa: <input type="text" name="department" id="department"></label><br>
+        <input type="file" name="image" id="image" accept="image/*">
+        <button type="submit">Add course</button>
+    </form>
+    <br>
+    <form action="/delete" method="POST" enctype="multipart/form-data">
+        <input type="submit" value="Delete">
+        <table border="true">
+                <tr>
+                    <th>Ma mon hoc</th>
+                    <th>Ten mon hoc</th>
+                    <th>Loai mon hoc</th>
+                    <th>Hoc ky</th>
+                    <th>Khoa</th>
+                    <th>Hinh anh</th>
+                </tr>
+                <% for(let i = 0 ; i< data.length; i++){ %>       
+                    <tr>
+                        <td><%= data[i].id %></td>
+                        <td><%= data[i].name %></td>
+                        <td><%= data[i].course_type %></td>
+                        <td><%= data[i].semester %></td>
+                        <td><%= data[i].department%></td>
+                        <td><img src="<%= data[i].imageUrl %>" alt="avt_<%=data[i].id%>"></td>
+                        <td><input type="checkbox" name="<%= data[i].id %>" id="<%= data[i].id %>"></td>
+                    </tr>
+                <% } %>
+        </table>
+    </form>
+</body>
+</html>
